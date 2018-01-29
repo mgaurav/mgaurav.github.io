@@ -2,7 +2,7 @@
 layout: post
 title:  "Excerpts From NATO Software Engineering Conference (1968)"
 date:   Mon Jan 29 12:18:53 IST 2018
-categories: Software Engineering 
+categories: software-engineering 
 ---
 
 I recently read transcript of a seminal NATO conference held in 1968 with the
