@@ -6,7 +6,7 @@ categories: software-engineering
 ---
 
 I recently read transcript of a seminal NATO conference held in 1968 with the
-title "Software Engineering" ([pdf](http://homepages.cs.ncl.ac.uk/brian.randell/NATO/nato1968.PDF)). I am astonishingly surprised to see that the
+title "Software Engineering" ([pdf](http://homepages.cs.ncl.ac.uk/brian.randell/NATO/nato1968.PDF)). I am surprised to see that the
 issues being discussed in a conference half a century ago are still prevalent.
 Below are some excerpts from the report (*emphasis is mine*).
 
