@@ -48,11 +48,12 @@ int Object::doubleData()
 {% endhighlight %}
 
 Compiling it and inspecting the object file using [pfunct][dwarves] shows that inline keyword
-is automatically added.
+is automatically added for `getData`, but not for `doubleData`.
 
 {% highlight bash %}
 $ g++ -O3 -I. -g -c object.cpp -o object.o
-$ pfunct -V object.o | grep getData
+$ pfunct -V object.o | egrep '(get|double)Data'
+void doubleData(class Object \*const this);
 inline void getData(class Object \*const this);
 {% endhighlight %}
 
