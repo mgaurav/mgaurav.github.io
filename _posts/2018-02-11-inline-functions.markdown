@@ -82,7 +82,7 @@ int quadrupleIt(int value)
 
 Compiling it in un-optimized mode, otherwise compiler removes `doubleIt` method altogether.
 {% highlight bash %}
-$ g++ -I. -g -c mathHelper.cpp -o mathHelper.o
+$ g++ -g -c mathHelper.cpp -o mathHelper.o
 $ nm mathHelper.o | grep doubleIt
 0000000000000000 W \_Z8doubleIti
 {% endhighlight %}
