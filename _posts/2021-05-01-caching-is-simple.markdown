@@ -25,17 +25,18 @@ a particular configuration is enabled or not.
 
 {% highlight golang linenos %}
 type BoolConfigProvider struct {
+  confClient ConfigurationSvcClient
 }
 
-func NewBoolConfigProvider() {
-  return &BoolConfigProvider{}
+func NewBoolConfigProvider(confClient *ConfigurationSvcClient) {
+  return &BoolConfigProvider{confClient: confClient}
 }
 
 func (c *BoolConfigProvider) IsEnabled(
   ctx context.Context,
   confKey string,
 ) (bool, error) {
-  value, err := confClient.Get(confKey)
+  value, err := c.confClient.Get(confKey)
   if err != nil {
     return false, err
   }
@@ -50,12 +51,14 @@ limited number of keys, so you decide to add caching to speed it up.
 
 {% highlight golang linenos %}
 type BoolConfigProvider struct {
+  confClient ConfigurationSvcClient
   cache map[string]bool
 }
 
-func NewBoolConfigProvider() {
+func NewBoolConfigProvider(confClient *ConfigurationSvcClient) {
   return &BoolConfigProvider{
-    cache: make(map[string]bool),
+    confClient: confClient,
+    cache:      make(map[string]bool),
   }
 }
 
@@ -67,7 +70,7 @@ func (c *BoolConfigProvider) IsEnabled(
     return enabled, nil 
   }
 
-  value, err := confClient.Get(confKey)
+  value, err := c.confClient.Get(confKey)
   if err != nil {
     return false, err
   }
@@ -83,9 +86,7 @@ This was easy, isn't it?
 
 Is it [simple][Simple-Made-Easy]? Perhaps, you would say yes!
 
-Is it correct and simple? Well, that depends!
-
-Let's analyze the correctness of the code.
+Is it correct and simple? Well, that depends! Let's analyze the correctness of the code.
 1. Is it thread-safe? No.
 <br/>
 Note that it is okay for a code to be non thread-safe depending on its context
@@ -125,8 +126,8 @@ introducing code duplication.
 3. It should be possible to measure cache effectiveness, e.g. hit ratios.
 
 ## Caching is Simple
-Let's try to design a simple cache which meets our desired properties. We will first
-implement the same non thread-safe cache as before.
+Let's try to design a simple cache which meets our desired properties.
+We will implement the same non thread-safe cache as before.
 
 {% highlight golang linenos %}
 type ThreadUnsafeCachedBoolConfigProvider struct {
@@ -153,8 +154,12 @@ func (c *ThreadUnsafeCachedBoolConfigProvider) IsEnabled(
     return enabled, nil 
   }
 
-  cache[confKey] = c.provider.IsEnabled(confKey)
-  return cache[confKey], nil
+  enabled, err := c.provider.IsEnabled(confKey)
+  if err != nil {
+    return false, err
+  }
+  cache[confKey] = enabled
+  return enabled, nil
 }
 
 func (c *ThreadUnsafeCachedBoolConfigProvider) HitRatio() float64 {
