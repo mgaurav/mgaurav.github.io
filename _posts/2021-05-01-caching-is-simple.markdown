@@ -84,7 +84,8 @@ func (c *BoolConfigProvider) IsEnabled(
 
 This was easy, isn't it?
 
-Is it [simple][Simple-Made-Easy]? Perhaps, you would say yes!
+Is it [simple][Simple-Made-Easy]? Perhaps, you would say yes! But, it is not.
+We have entangled caching with the configuration provider.
 
 Is it correct and simple? Well, that depends! Let's analyze the correctness of the code.
 1. Is it thread-safe? No.
