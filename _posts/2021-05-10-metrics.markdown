@@ -1,0 +1,89 @@
+---
+layout: post
+title:  "Metrics"
+date:   Mon May 10 10:15:07 IST 2021
+categories: metrics
+---
+
+Metrics are a key aspect of Observability story of any software product.
+They help in providing insights into what's happening in production and
+can be used to help answer key questions from product or engineering
+stand-point.
+Common examples of metrics include CPU utilization of a process/server,
+memory utilization of a process, API latencies etc.
+
+Fortunately, we don't need to build a metrics infrastructure from scratch.
+There are a number of solutions available for publishing metrics and
+visualizing them, e.g. [influxdb][influxdata], [SignalFX][SignalFX],
+[TimescaleDB][timescaledb].
+
+## What constitutes a metric?
+Let's look at the common denominator of what constitutes as metric, different
+solution might have more features on top of it, but we will focus on minimal
+definition.
+
+Suppose you want to publish CPU utilization of your server as a metric.
+- The metric needs to have a name, say `cpu_utilization`. Let's call it a
+ `measurement`.
+- The metric will be published at regular time intervals, say once every 10 seconds.
+- The metric will have a value associated every time it is published which would
+ represent cpu utilization of the server at that timestamp.
+
+Thus, we can represent it as follows:
+{% highlight golang %}
+<measurement> <value> <timestamp>
+cpu_utilization 50 1620623350
+{% endhighlight %}
+
+However, if you have multiple servers, then you would also want additional metadata
+associated with your metrics to identify which server the measurement belongs to.
+So, you have support for attaching key-value pairs (`tags`) to the metrics which leads
+to following representation:
+{% highlight golang %}
+<measurement> <key=value>,<key=value>... <value> <timestamp>
+cpu_utilization server=A 50 1620623350
+cpu_utilization server=B 50 1620623350
+{% endhighlight %}
+
+We can visualize the metric as a time-series where `measurement` and `tags` form a
+timeseries which has a value associated at a given timestamp.
+Note that how cardinality of your tag values would affect how many timeseries are
+in use.
+If you have 2 servers, then you have 2 timeseries in above example.
+But, if you have 1000 servers, then you have 1000 timeseries.
+Most solutions have limits on how many timeseries they could deal with, thus, it is
+important to limit cardinality of the tags.
+If you have 5 tags each with 4 distinct values, then total number of timeseries emitted
+will be a cross-product of all the distinct values, so `4^5 = 1024` timeseries.
+- InfluxDB keeps an in-memory index of all timeseries, thus, can go OOM if number of
+ timeseries increases beyond a limit.
+- SignalFX charges by number of timeseries emitted per minute.
+
+## How to identify what metrics to publish?
+It is important to list down what questions you want to answer via metrics & various
+aggregations/filtering you need as that governs what metrics you should publish / what
+additional tags you need to apply to the metrics.
+This should be first step before adding the metrics.
+
+Examples:
+1. If you are processing data, then questions you might be interested in could be:
+- What is the throughput of data processing? - `bytes_processed_per_sec`
+- What is the max time taken to process the data? - `time_taken_in_millis`
+- What is the max size processed? - `bytes_processed`
+2. If you are measuring latency of some operation:
+- What is the distribution of latencies grouped by success/failure - 
+ `time_taken_in_millis`, `status=success/failure`
+
+Note that how we have published 2 separate metrics for time taken and size processed.
+Another alternative would have been that we publish `time_taken_in_millis` and add
+a tag `bytes_processed=<value>` with it because time taken is dependent on how much
+size we are processing.
+However, `bytes_processed` tag will have unbounded cardinality, and thus, is unsuitable.
+This is a common technique to move high cardinality tags as separate measurements.
+
+Think about all the questions you would want to answer from product and engineering
+point of view and see if you can translate those to metrics.
+
+[influxdata]: https://www.influxdata.com/
+[SignalFX]: https://docs.signalfx.com/en/latest/
+[timescaledb]: https://www.timescale.com/
