@@ -25,7 +25,7 @@ I do them.
 2. **Getting familiar with codebase**
 
     I have built familiarity with codebases by just doing code reviews.
-    There are always parts of the codebase you wouldn't work otherwise
+    There are always parts of the codebase you wouldn't work on otherwise
     because of team boundaries, but code reviews allows you to explore
     those in a piecemeal fashion.
     It might be daunting otherwise to explore a large codebase since
@@ -57,7 +57,7 @@ I do them.
 5. **Learn about non-functional practices**
 
     Typically, reviewers would comment about error handling, scale/performance issues etc.
-    These are very hard to pick from ramp up documentation because these are generally very
+    These are very hard to pick from documentation because these are generally very
     contextual.
     By doing code reviews, you can learn from other reviewers about how they go about
     identifying parts of the code where non-functional requirements are important to be
