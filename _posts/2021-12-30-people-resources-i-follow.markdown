@@ -34,6 +34,8 @@ Most of these I have discovered via Lobsters and will continue to discover more.
 *   [https://easyperf.net/notes/](https://easyperf.net/notes/) - Performance oriented blog
     
 *   [https://www.infoq.com/](https://www.infoq.com/)
+
+*   [https://shipilev.net/jvm/anatomy-quarks/](https://shipilev.net/jvm/anatomy-quarks/)
     
 
 ## People
