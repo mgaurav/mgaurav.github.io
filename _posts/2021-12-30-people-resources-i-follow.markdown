@@ -82,6 +82,10 @@ Any talks by above 3 speakers are worth spending time on in my opinion.
     
 *   [Continuous Delivery Channel](https://www.youtube.com/channel/UCCfqyGl3nq_V0bo64CjZh8g) - Dave Farley
     
+### Design
+* [A Philosophy of Software Design](https://www.youtube.com/watch?v=bmSAYlu0NcY) - John Ousterhout
+
+  Interface design, Error handling, General purpose code being simpler than specialized code
 
 ## Books
 
