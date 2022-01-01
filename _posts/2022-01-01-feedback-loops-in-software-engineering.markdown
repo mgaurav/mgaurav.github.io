@@ -42,5 +42,6 @@ easier.
 
 We need to listen to our feedback loops as we develop software.
 They are telling us where to improve, but only if we listen.
+We should utilize the fastest feedback loop as much as possible.
 
 [^1]: https://en.wikibooks.org/wiki/Control_Systems/Feedback_Loops
