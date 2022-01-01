@@ -32,7 +32,7 @@ If any one of those changes, all usages of either will get re-compiled and re-de
 That's an unnecessary increase in our build times and deployment times.
 
 We had a feedback about those as soon as we modified the module definition or added
-module dependencies. Listen to such feedback to improve the organization of the codebase.
+module dependencies.
 
 ### 3. Code Reviews
 Code reviews are the first feedback on readability of our code. This is the feedback
