@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Feedback Loops in Software Engineering"
+title:  "Being Agile"
 date:   Tue Nov 14 19:34:31 IST 2023
 ---
 
