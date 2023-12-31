@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  'Tech Lead Learning Path: Getting Ready for Tech Lead'
+title:  "Tech Lead Learning Path: Getting Ready for Tech Lead"
 date:   Sun Dec 31 18:21:40 IST 2023
 ---
 
