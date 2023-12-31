@@ -59,7 +59,6 @@ A lot of communication is actually predictive in our environment, e.g.
 There is no way you would avoid these communications, so preparing yourself upfront would help you
 to stay on top of them.
 
-> [!NOTE]
 > A general rule of thumb I follow is to plan for any communication coming in next 2 weeks
 > and be proactive in communicating things as soon as I become aware of them.
 
@@ -93,7 +92,6 @@ communication and using synchronous communication to reduce need of asynchronous
 wherever possible. With a bit of preparation before your 1:1 syncs, you can avoid a lot of
 asynchronous communication (especially with higher management).
 
-> [!NOTE]
 > A general advice for 1:1s is to always keep a shared doc for your 1:1s where during the
 > meeting, the doc is shared on the screen and you take notes during the meeting itself where both
 > persons can see the notes. This simple tip would help significantly to be on top of whatever is
