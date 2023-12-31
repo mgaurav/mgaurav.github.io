@@ -107,7 +107,7 @@ asynchronous communication wherever possible, however, it won't (& shouldn't) re
 communication fully. Different people follow different ways to be on top of all asynchronous
 channels, I will list few I follow or have heard from other folks:
 
-1. Slack
+### Slack
 
 Some good practices on how to manage Slack communication better:
 
@@ -134,7 +134,7 @@ miss the next ETA.
 I maintain 0 unread Slack messages, Marking everything as read helps me to get to know incremental
 incoming messages.
 
-2. Jira
+### Jira
 
 Often the most important jiras which a Tech lead shouldn't miss would be customer issues, high
 priority bugs etc. One way which works well for me for those is to have a
