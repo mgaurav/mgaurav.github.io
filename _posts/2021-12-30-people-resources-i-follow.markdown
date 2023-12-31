@@ -45,6 +45,8 @@ Few which are worth mentioning.
 *   [Martin Thompson](https://twitter.com/mjpt777) - High Performance Expert
     
 *   [Gil Tene](https://twitter.com/giltene) - Garbage Collection Expert
+
+*   [Kelsey Hightower](https://twitter.com/kelseyhightower) - Kubernetes, CNCF Expert, Highly Insightful
     
 *   [Brad Fitzpatrick](https://twitter.com/bradfitz) - GoLang Expert
     
